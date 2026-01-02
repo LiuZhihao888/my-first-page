@@ -1,33 +1,55 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <title>文档标题</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>考研单词学习游戏</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div style="background-color:#f1f1f1;
-                text-align:center;
-                padding:40px;">
-        <img src='https://kangwenchang.com/logo.png' alt='kwc' width='80px' height='80px'>
+  <!-- 顶部：进度+计时 -->
+  <header class="header">
+    <div class="progress">
+      进度：<span id="currentPage">1</span>/<span id="totalPages">0</span> 页 | 
+      已学单词：<span id="learnedWords">0</span>/<span id="totalWords">0</span> 个
     </div>
-    <div style="max-width:700px;
-                magin:30px auto;
-                padding:15px;
-                line-height:5;
-                color:blue;
-                ">
-        <p>lzh</p>
-        <p>lzh</p>
-        <p>lzh</p>
+    <div class="timer">
+      当前耗时：<span id="currentTime">00:00:00</span>
+      <button id="pauseBtn">暂停</button>
+      <button id="resumeBtn" style="display: none;">继续</button>
     </div>
-    <div style="background-color:#f1f1f1;
-                text-align:center;
-                padding:40px;">
-        <p>我的网站</p>
-        <a href="https://www.baidu.com">链接</a>
-    </div>
-</body>
+  </header>
 
+  <!-- 操作指引 -->
+  <div class="guide">📌 鼠标悬停单词看释义，确认全认识点击「都认识」跳转，可暂停计时</div>
+
+  <!-- 单词展示区 -->
+  <div class="word-container" id="wordContainer"></div>
+
+  <!-- 分页按钮 -->
+  <div class="pagination">
+    <button id="prevBtn">上一页</button>
+    <button id="nextBtn">都认识（下一页）</button>
+  </div>
+
+  <!-- 悬浮释义卡片（初始隐藏） -->
+  <div class="meaning-card" id="meaningCard" style="display: none; position: absolute;"></div>
+
+  <!-- 通关弹窗（初始隐藏） -->
+  <div class="success-modal" id="successModal" style="display: none;">
+    <div class="modal-content">
+      <h2>🎉 恭喜通关！</h2>
+      <p>总学习时长：<span id="totalStudyTime">00:00:00</span></p>
+      <p>共学习 <span id="finalTotalWords">0</span> 个单词（<span id="finalTotalPages">0</span> 页）</p>
+      <p>每页平均耗时：<span id="avgPageTime">00:00:00</span></p>
+      <button id="restartBtn">重新学习</button>
+    </div>
+  </div>
+
+  <!-- 按依赖顺序加载脚本 -->
+  <script src="script/wordData.js"></script>
+  <script src="script/timer.js"></script>
+  <script src="script/uiRender.js"></script>
+  <script src="script/main.js"></script>
+</body>
 </html>
